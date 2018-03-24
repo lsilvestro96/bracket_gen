@@ -1,0 +1,64 @@
+1 Virginia
+16 UMBC
+8 Creighton
+9 Kansas St.
+5 Kentucky
+12 Davidson
+4 Arizona
+13 Buffalo
+6 Miami (Fla.)
+11 Loyola-Chicago
+3 Tennessee
+14 Wright St.
+7 Nevada
+10 Texas
+2 Cincinnati
+15 Georgia St.
+1 Xavier
+16 NC Central/Texas So.
+8 Missouri
+9 Florida St.
+5 Ohio St.
+12 S. Dakota St.
+4 Gonzaga
+13 UNCG
+6 Houston
+11 San Diego St.
+3 Michigan
+14 Montana
+7 Texas A&M
+10 Providence
+2 North Carolina
+15 Lipscomb
+1 Villanova
+16 LIU Brooklyn/Radford
+8 Virginia Tech
+9 Alabama
+5 West Virginia
+12 Murray St.
+4 Wichita St.
+13 Marshall
+6 Florida
+11 St. Bonaventure/UCLA
+3 Texas Tech
+14 S.F. Austin
+7 Arkansas
+10 Butler
+2 Purdue
+15 CSU Fullerton
+1 Kansas
+16 Penn
+8 Seton Hall
+9 NC St.
+5 Clemson
+12 New Mexico St.
+4 Auburn
+13 Charleston
+6 TCU
+11 Arizona St./Syracuse
+3 Michigan St.
+14 Bucknell
+7 Rhode Island
+10 Oklahoma
+2 Duke
+15 Iona
