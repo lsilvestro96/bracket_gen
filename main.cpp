@@ -7,6 +7,8 @@
 #include<random>
 #include<chrono>
 
+/* Choose a winning team from Team1 and Team2 using a bernoulli distribtuion, 
+   which favors better seeded teams.*/
 Team getWinner(std::default_random_engine &gen, const Team &team1, const Team &team2) {
     int seed1 = team1.getSeed();
     int seed2 = team2.getSeed();
@@ -18,6 +20,7 @@ Team getWinner(std::default_random_engine &gen, const Team &team1, const Team &t
     return team2;
 }
 
+// Choose a random string from str1 and str2 from a random, uniform distribution
 std::string randStr(const std::string &str1, const std::string &str2) {
     unsigned randSeed = std::chrono::system_clock::now().time_since_epoch().count();
     std::default_random_engine gen(randSeed);
@@ -29,10 +32,13 @@ std::string randStr(const std::string &str1, const std::string &str2) {
     return str2;
 }
 
-std::vector<Team> parseTeams(char* team) {
+/* Parse team names and seeds from a file and populate a vector
+   with the teams. Bracket will be generated from the resulting vector */
+std::vector<Team> parseTeams(char* teamFileName) {
     std::vector<Team> teams;
-    std::ifstream teamFile(team);
+    std::ifstream teamFile(teamFileName);
     std::string line;
+    // Each line contains a team and a seed. Parse the line into a Team object
     while (std::getline(teamFile, line)) {
         size_t delim = line.find(" ");
         std::string name = line.substr(delim+1);
@@ -40,6 +46,7 @@ std::vector<Team> parseTeams(char* team) {
         int seed;
         std::stringstream seedToInt(seedStr);
         seedToInt >> seed;
+        // If the line contains a First Four team pair, randomly choose a winner
         size_t nameIdx = name.find("/");
         if (nameIdx != std::string::npos) {
             std::string name1 = name.substr(0, nameIdx);
@@ -53,13 +60,15 @@ std::vector<Team> parseTeams(char* team) {
     return teams;
 }
 
+// Generate the bracket by choosing a winner for every pair of teams.
 std::vector<std::vector<Team> > genBracket(const std::vector<Team> &teams) {
     unsigned randSeed = std::chrono::system_clock::now().time_since_epoch().count();
     std::default_random_engine gen(randSeed);
     std::vector<Team> winners = teams;
     std::vector<std::vector<Team> > results;
+    // Winners will continue to be chosen until one winning team remains
     while (winners.size() >= 2) {
-        std::vector<Team> newWinners;
+        std::vector<Team> newWinners; // Create a new vector for each round
         for (size_t i = 0; i < winners.size(); i+=2) {
             Team winner = getWinner(gen, winners[i], winners[i+1]);
             newWinners.push_back(winner);
@@ -70,8 +79,9 @@ std::vector<std::vector<Team> > genBracket(const std::vector<Team> &teams) {
     return results;
 }
 
-void printBracket(const std::vector<std::vector<Team> > &b, char* out) {
-    std::ofstream outFile(out);
+// print the bracket into a file with the specified name
+void printBracket(const std::vector<std::vector<Team> > &b, char* outName) {
+    std::ofstream outFile(outName);
     for (size_t i = 0; i < b.size(); ++i) {
         outFile << "Round " << i + 1 << " Winners:" << std::endl;
         for (size_t j = 0; j < b[i].size(); ++j) {
