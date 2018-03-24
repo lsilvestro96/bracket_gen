@@ -8,7 +8,7 @@ Team::Team(const std::string &name, int seed) {
 
 // Get the name of the team
 std::string Team::getName() const {
-    return std::string(_name);
+    return _name;
 }
 
 // Get the team's seed
